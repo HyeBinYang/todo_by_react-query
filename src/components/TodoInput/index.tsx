@@ -1,31 +1,21 @@
+import { AxiosError } from "axios";
 import React, { useRef } from "react";
 import { useMutation, useQueryClient } from "react-query";
+import { Todo } from "../../types/todo";
 import axiosInstance from "../../utils/axios";
 import "./style.css";
-
-interface Todo {
-  title: string;
-}
 
 const TodoInput = () => {
   const todoRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
 
-  const addTodo = async (todo: string) => {
-    console.log("addTodo");
-    const { data } = await axiosInstance.post<Todo>("todos", {
-      title: todo,
-    });
-
+  const addTodo = async (newTodo: Todo) => {
+    const { data } = await axiosInstance.post<Todo>("todos", newTodo);
     return data;
   };
 
-  const mutation = useMutation<Todo, number, string>(addTodo, {
-    onMutate: () => {
-      console.log("onMutate");
-    },
+  const mutation = useMutation<Todo, AxiosError, Todo>(addTodo, {
     onSuccess: async (data, variables, context) => {
-      console.log(data, variables, context);
       queryClient.setQueryData<Todo[]>("todoList", (oldData) => {
         if (!oldData) return [];
 
@@ -33,16 +23,14 @@ const TodoInput = () => {
           ...oldData,
           {
             title: data.title,
+            done: false,
           },
         ];
       });
-      // return queryClient.invalidateQueries(["todoList"]);
     },
     onError: async (error, variables, context) => {
-      console.log(error, variables, context);
-    },
-    onSettled: async (data, error, variables, context) => {
-      console.log("second");
+      console.error(error);
+      alert("에러가 발생 했습니다. 다시 한번 시도해주세요.");
     },
   });
 
@@ -50,11 +38,8 @@ const TodoInput = () => {
     e.preventDefault();
 
     if (todoRef.current && todoRef.current.value) {
-      mutation.mutate(todoRef.current.value, {
-        onSuccess: () => {
-          console.log("success mutate");
-        },
-      });
+      mutation.mutate({ title: todoRef.current.value, done: false });
+      todoRef.current.value = "";
     }
   };
 

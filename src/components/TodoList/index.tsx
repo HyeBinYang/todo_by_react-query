@@ -1,6 +1,6 @@
 import React from "react";
 import TodoItem from "../TodoItem";
-import useTodoListQuery from "../../utils/hook/useTodoListQuery";
+import useTodoListQuery from "../../utils/query/useTodoListQuery";
 import "./style.css";
 
 const TodoList = () => {
