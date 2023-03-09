@@ -1,0 +1,8 @@
+.todo__list {
+  list-style: none;
+  margin-top: 30px;
+}
+
+.todo__list > * {
+  border-top: 1px solid #eeeeee;
+}
