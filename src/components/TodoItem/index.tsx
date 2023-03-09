@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
+import { TodoActionsContext, TodoContext } from "../../context/TodoContext";
 import { Todo } from "../../types/todo";
 import axiosInstance from "../../utils/axios";
 import useUpdateTodoMutation from "../../utils/mutation/useUpdateTodoMutation";
@@ -12,11 +13,17 @@ const deleteTodo = async (todoId: number) => {
 };
 
 const TodoItem = (todo: TodoItemProps) => {
+  const todoActionsContext = useContext(TodoActionsContext);
   const queryClient = useQueryClient();
-  const updateMutation = useUpdateTodoMutation(todo);
+  const updateMutation = useUpdateTodoMutation();
 
   const handleToggleCheckbox = () => {
     updateMutation.mutate({ ...todo, done: !todo.done });
+  };
+
+  const handleClickUpdate = () => {
+    todoActionsContext.toggleEditModal(true);
+    todoActionsContext.getTodo(todo);
   };
 
   const deleteMutation = useMutation(deleteTodo, {
@@ -49,7 +56,9 @@ const TodoItem = (todo: TodoItemProps) => {
       <label htmlFor={`checkbox_${todo.id}`}></label>
       {todo.done ? <del className="item__title">{todo.title}</del> : <p className="item__title">{todo.title}</p>}
       <div className="item__button-container">
-        <button className="item__button">수정</button>
+        <button className="item__button" onClick={handleClickUpdate}>
+          수정
+        </button>
         <button className="item__button" onClick={handleClickDelete}>
           삭제
         </button>

@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
+import TodoContextProvider from "./context/TodoContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -18,7 +19,9 @@ const queryClient = new QueryClient({
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <TodoContextProvider>
+        <App />
+      </TodoContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
