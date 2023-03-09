@@ -1,6 +1,6 @@
 .todo__container {
   width: 50%;
-  max-width: 500px;
+  max-width: 800px;
   height: 80vh;
   overflow-y: auto;
   position: absolute;
@@ -23,4 +23,10 @@
   border-radius: 16px;
   background-clip: padding-box;
   border: 2px solid transparent;
+}
+
+@media screen and (max-width: 1000px) {
+  .todo__container {
+    width: 90%;
+  }
 }
