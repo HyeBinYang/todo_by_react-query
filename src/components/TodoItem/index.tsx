@@ -11,6 +11,8 @@ const TodoItem = (todo: TodoItemProps) => {
   const todoActionsContext = useContext(TodoActionsContext);
   const updateMutation = useUpdateTodoMutation();
 
+  console.log(todoActionsContext);
+
   const handleToggleCheckbox = () => {
     updateMutation.mutate({ ...todo, done: !todo.done });
   };

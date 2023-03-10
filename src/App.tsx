@@ -7,7 +7,7 @@ import TodoEditModal from "./components/TodoEditModal";
 import { TodoContext } from "./context/TodoContext";
 
 const App = () => {
-  const context = useContext(TodoContext);
+  // const context = useContext(TodoContext);
 
   return (
     <main id="app">
@@ -15,7 +15,7 @@ const App = () => {
         <TodoInput />
         <TodoList />
       </TodoLayout>
-      {context.editModal && <TodoEditModal />}
+      {/* {context.editModal && <TodoEditModal />} */}
     </main>
   );
 };

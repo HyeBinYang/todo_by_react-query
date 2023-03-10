@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Todo } from "../types/todo";
 
 interface TodoContextProviderProps {
@@ -34,17 +34,20 @@ const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
     done: false,
   });
   const [editModal, setEditModal] = useState(false);
-
-  const getTodo = (todo: Todo) => {
-    setTodo(todo);
-  };
-
-  const toggleEditModal = (active: boolean) => {
-    setEditModal(active);
-  };
+  const actions = useMemo(
+    () => ({
+      getTodo(todo: Todo) {
+        setTodo(todo);
+      },
+      toggleEditModal(active: boolean) {
+        setEditModal(active);
+      },
+    }),
+    []
+  );
 
   return (
-    <TodoActionsContext.Provider value={{ getTodo, toggleEditModal }}>
+    <TodoActionsContext.Provider value={actions}>
       <TodoContext.Provider value={{ todo, editModal }}>{children}</TodoContext.Provider>
     </TodoActionsContext.Provider>
   );
