@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { TodoActionsContext, TodoContext } from "../../context/TodoContext";
+import { TodoActionsContext } from "../../context/TodoContext";
 import { Todo } from "../../types/todo";
 import axiosInstance from "../../utils/axios";
 import useUpdateTodoMutation from "../../utils/mutation/useUpdateTodoMutation";

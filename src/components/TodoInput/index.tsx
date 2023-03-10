@@ -16,17 +16,7 @@ const TodoInput = () => {
 
   const mutation = useMutation<Todo, AxiosError, Todo>(addTodo, {
     onSuccess: async (data, variables, context) => {
-      queryClient.setQueryData<Todo[]>("todoList", (oldData) => {
-        if (!oldData) return [];
-
-        return [
-          ...oldData,
-          {
-            title: data.title,
-            done: false,
-          },
-        ];
-      });
+      queryClient.invalidateQueries("todoList");
     },
     onError: async (error, variables, context) => {
       console.error(error);

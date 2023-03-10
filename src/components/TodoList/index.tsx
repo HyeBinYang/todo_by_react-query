@@ -14,17 +14,7 @@ const TodoList = () => {
     return <h1>Error: {error.message}</h1>;
   }
 
-  return (
-    <ul className="todo__list">
-      {todoList
-        ? todoList.map((todo) => (
-            <React.Fragment key={todo.id}>
-              <TodoItem {...todo} />
-            </React.Fragment>
-          ))
-        : null}
-    </ul>
-  );
+  return <ul className="todo__list">{todoList ? todoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>;
 };
 
 export default TodoList;
