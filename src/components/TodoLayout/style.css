@@ -2,7 +2,6 @@
   width: 50%;
   max-width: 800px;
   height: 80vh;
-  overflow-y: auto;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11,18 +10,7 @@
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.todo__container::-webkit-scrollbar {
-  width: 8px;
-  border-radius: 0px 16px 16px 0;
-}
-
-.todo__container::-webkit-scrollbar-thumb {
-  background-color: #c3c3c3;
-  border-radius: 16px;
-  background-clip: padding-box;
-  border: 2px solid transparent;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1000px) {

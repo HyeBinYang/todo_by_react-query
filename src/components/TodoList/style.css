@@ -1,8 +1,22 @@
 .todo__list {
+  height: calc(100% - 70px);
   list-style: none;
   margin-top: 30px;
+  overflow-y: auto;
 }
 
 .todo__list > * {
   border-top: 1px solid #eeeeee;
+}
+
+.todo__list::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 0px 16px 16px 0;
+}
+
+.todo__list::-webkit-scrollbar-thumb {
+  background-color: #cfcfcf;
+  border-radius: 16px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useMemo, useState } from "react";
 import { Todo } from "../types/todo";
 
 interface TodoContextProviderProps {

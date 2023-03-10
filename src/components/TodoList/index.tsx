@@ -19,10 +19,10 @@ const TodoList = () => {
   }
 
   return (
-    <div style={{ position: "relative" }}>
+    <>
       <ul className="todo__list">{todoList ? todoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>
       {context.editModal && <TodoEditModal />}
-    </div>
+    </>
   );
 };
 
