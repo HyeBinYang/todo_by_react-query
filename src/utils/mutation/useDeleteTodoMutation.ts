@@ -2,19 +2,20 @@ import { useMutation, useQueryClient } from "react-query";
 import { Todo } from "../../types/todo";
 import axiosInstance from "../axios";
 
-const updateTodo = async (newTodo: Todo) => {
-  const { data } = await axiosInstance.patch(`/todos/${newTodo.id}`, newTodo);
-  return data;
-};
-
-const useUpdateTodoMutation = () => {
+const useDeleteTodoMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(updateTodo, {
-    onSuccess: (newData) => {
+  const deleteTodo = async (todoId: number) => {
+    await axiosInstance.delete(`/todos/${todoId}`);
+    return todoId;
+  };
+
+  return useMutation(deleteTodo, {
+    onSuccess: (deleteTodoId) => {
       queryClient.setQueryData<Todo[]>("todoList", (oldData) => {
         if (!oldData) return [];
-        return oldData.map((data) => (data.id === newData.id ? newData : data));
+
+        return oldData?.filter((data) => data.id !== deleteTodoId);
       });
     },
     onError: (error) => {
@@ -24,4 +25,4 @@ const useUpdateTodoMutation = () => {
   });
 };
 
-export default useUpdateTodoMutation;
+export default useDeleteTodoMutation;

@@ -9,11 +9,7 @@ const getTodoList = async () => {
 };
 
 const useTodoListQuery = () => {
-  return useQuery<Todo[], AxiosError>(["todoList"], getTodoList, {
-    onSuccess: (data) => {
-      console.log("Success", data);
-    },
-  });
+  return useQuery<Todo[], AxiosError>(["todoList"], getTodoList);
 };
 
 export default useTodoListQuery;

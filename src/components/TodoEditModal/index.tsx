@@ -31,11 +31,10 @@ const TodoEditModal = () => {
     if (inputEl.current) {
       inputEl.current.value = todoContext.todo.title;
     }
-  }, [inputEl]);
+  }, []);
 
   return (
     <div className="modal__container">
-      <div className="modal__backdrop"></div>
       <div className="modal__content">
         <h1 className="modal__title">Todo 수정하기</h1>
         <input ref={inputEl} type="text" className="modal__input--text" placeholder="할 일" />

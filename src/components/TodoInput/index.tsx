@@ -1,28 +1,10 @@
-import { AxiosError } from "axios";
 import React, { useRef } from "react";
-import { useMutation, useQueryClient } from "react-query";
-import { Todo } from "../../types/todo";
-import axiosInstance from "../../utils/axios";
+import useAddTodoMutation from "../../utils/mutation/useAddTodoMutation";
 import "./style.css";
 
 const TodoInput = () => {
   const todoRef = useRef<HTMLInputElement>(null);
-  const queryClient = useQueryClient();
-
-  const addTodo = async (newTodo: Todo) => {
-    const { data } = await axiosInstance.post<Todo>("todos", newTodo);
-    return data;
-  };
-
-  const mutation = useMutation<Todo, AxiosError, Todo>(addTodo, {
-    onSuccess: async (data, variables, context) => {
-      queryClient.invalidateQueries("todoList");
-    },
-    onError: async (error, variables, context) => {
-      console.error(error);
-      alert("에러가 발생 했습니다. 다시 한번 시도해주세요.");
-    },
-  });
+  const mutation = useAddTodoMutation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

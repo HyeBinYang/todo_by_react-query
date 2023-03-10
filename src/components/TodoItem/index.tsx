@@ -1,20 +1,14 @@
 import React, { useContext } from "react";
-import { useMutation, useQueryClient } from "react-query";
 import { TodoActionsContext } from "../../context/TodoContext";
 import { Todo } from "../../types/todo";
-import axiosInstance from "../../utils/axios";
+import useDeleteTodoMutation from "../../utils/mutation/useDeleteTodoMutation";
 import useUpdateTodoMutation from "../../utils/mutation/useUpdateTodoMutation";
 import "./style.css";
 
 interface TodoItemProps extends Todo {}
 
-const deleteTodo = async (todoId: number) => {
-  axiosInstance.delete(`/todos/${todoId}`);
-};
-
 const TodoItem = (todo: TodoItemProps) => {
   const todoActionsContext = useContext(TodoActionsContext);
-  const queryClient = useQueryClient();
   const updateMutation = useUpdateTodoMutation();
 
   const handleToggleCheckbox = () => {
@@ -26,19 +20,7 @@ const TodoItem = (todo: TodoItemProps) => {
     todoActionsContext.getTodo(todo);
   };
 
-  const deleteMutation = useMutation(deleteTodo, {
-    onSuccess: () => {
-      queryClient.setQueryData<Todo[]>("todoList", (oldData) => {
-        if (!oldData) return [];
-
-        return oldData?.filter((data) => data.id !== todo.id);
-      });
-    },
-    onError: (error) => {
-      console.error(error);
-      alert("에러가 발생 했습니다. 다시 한번 시도해주세요.");
-    },
-  });
+  const deleteMutation = useDeleteTodoMutation();
 
   const handleClickDelete = () => {
     if (todo.id) deleteMutation.mutate(todo.id);
@@ -67,4 +49,4 @@ const TodoItem = (todo: TodoItemProps) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);

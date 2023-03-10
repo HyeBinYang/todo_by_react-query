@@ -1,12 +1,7 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Todo 2",
-      "done": false
-    },
-    {
-      "title": "hello",
+      "title": "리엑트 공부하기",
       "done": true,
       "id": 4
     },
@@ -16,19 +11,24 @@
       "id": 5
     },
     {
-      "title": "wewe",
-      "done": false,
-      "id": 6
-    },
-    {
       "title": "wewewe",
       "done": false,
       "id": 7
     },
     {
-      "title": "erer",
-      "done": true,
-      "id": 8
+      "title": "hello",
+      "done": false,
+      "id": 9
+    },
+    {
+      "title": "타입스크립트 공부",
+      "done": false,
+      "id": 10
+    },
+    {
+      "title": "wewe",
+      "done": false,
+      "id": 11
     }
   ]
 }
