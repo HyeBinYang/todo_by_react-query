@@ -1,7 +1,9 @@
 import React, { useContext, useRef } from "react";
 import { TodoActionsContext } from "../../context/TodoContext";
 import useAddTodoMutation from "../../utils/mutation/useAddTodoMutation";
+import Input from "../common/Input";
 import Modal from "../common/Modal";
+import "./style.css";
 
 const TodoAddModal = () => {
   const todoInputEl = useRef<HTMLInputElement>(null);
@@ -29,7 +31,7 @@ const TodoAddModal = () => {
   return (
     <Modal>
       <h1 className="modal__title">할 일 등록하기</h1>
-      <input ref={todoInputEl} type="text" className="modal__input--text" placeholder="오늘 할 일" />
+      <Input ref={todoInputEl} type="text" className="modal__input--text" placeholder="오늘 할 일" />
       <div className="modal__buttons">
         <button className="modal__button" onClick={handleClickClose}>
           닫기

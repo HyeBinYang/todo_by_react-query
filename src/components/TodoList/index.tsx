@@ -1,13 +1,16 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { lazy, Suspense, useCallback, useContext, useMemo } from "react";
 import TodoItem from "../TodoItem";
 import useTodoListQuery from "../../utils/query/useTodoListQuery";
 import "./style.css";
 import Spinner from "../common/Spinner";
 import { TodoContext } from "../../context/TodoContext";
-import TodoEditModal from "../TodoEditModal";
-import TodoAddModal from "../TodoAddModal";
+
+const TodoAddModal = import("../TodoAddModal");
+const TodoEditModal = import("../TodoEditModal");
 
 const TodoList = () => {
+  const PreloadTodoAddModal = lazy(() => TodoAddModal);
+  const PreloadTodoEditModal = lazy(() => TodoEditModal);
   const context = useContext(TodoContext);
   const { data: todoList, status, error } = useTodoListQuery();
 
@@ -19,8 +22,8 @@ const TodoList = () => {
   const popupModal = useCallback(() => {
     const coupler = {
       "": null,
-      edit: <TodoEditModal />,
-      add: <TodoAddModal />,
+      edit: <PreloadTodoEditModal />,
+      add: <PreloadTodoAddModal />,
     };
 
     return coupler[context.modal];
@@ -37,7 +40,7 @@ const TodoList = () => {
   return (
     <>
       <ul className="todo__list">{searchedTodoList ? searchedTodoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>
-      {popupModal()}
+      <Suspense fallback={null}>{popupModal()}</Suspense>
     </>
   );
 };

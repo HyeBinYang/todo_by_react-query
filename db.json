@@ -1,11 +1,6 @@
 {
   "todos": [
     {
-      "title": "ertert",
-      "done": false,
-      "id": 1
-    },
-    {
       "title": "리엑트 공부 123",
       "done": false,
       "id": 2
