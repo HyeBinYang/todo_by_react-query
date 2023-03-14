@@ -8,7 +8,7 @@
 }
 
 .modal__content {
-  width: 55vw;
+  width: 55%;
   padding: 20px;
   position: absolute;
   top: 50%;
@@ -16,4 +16,10 @@
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .modal__content {
+    width: 90%;
+  }
 }
