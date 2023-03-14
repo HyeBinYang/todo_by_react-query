@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TodoActionsContext, TodoContext } from "../../context/TodoContext";
+import { TodoActionsContext } from "../../context/TodoContext";
 import { Todo } from "../../types/todo";
 import useDeleteTodoMutation from "../../utils/mutation/useDeleteTodoMutation";
 import useUpdateTodoMutation from "../../utils/mutation/useUpdateTodoMutation";
@@ -16,7 +16,7 @@ const TodoItem = (todo: TodoItemProps) => {
   };
 
   const handleClickUpdate = () => {
-    todoActionsContext.toggleEditModal(true);
+    todoActionsContext.toggleModal("edit");
     todoActionsContext.getTodo(todo);
   };
 

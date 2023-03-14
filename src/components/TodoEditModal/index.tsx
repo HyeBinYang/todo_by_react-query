@@ -12,7 +12,7 @@ const TodoEditModal = () => {
   const updateTodoMutation = useUpdateTodoMutation();
 
   const handleClickCancel = () => {
-    todoActionsContext.toggleEditModal(false);
+    todoActionsContext.toggleModal("");
   };
 
   const handleClickUpdate = () => {
@@ -21,7 +21,7 @@ const TodoEditModal = () => {
         { ...todoContext.todo, title: inputEl.current.value },
         {
           onSuccess: () => {
-            todoActionsContext.toggleEditModal(false);
+            todoActionsContext.toggleModal("");
           },
         }
       );

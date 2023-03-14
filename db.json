@@ -6,9 +6,14 @@
       "id": 1
     },
     {
-      "title": "리엑트 공부",
+      "title": "리엑트 공부 123",
       "done": false,
       "id": 2
+    },
+    {
+      "title": "typescript 복습",
+      "done": true,
+      "id": 3
     }
   ]
 }

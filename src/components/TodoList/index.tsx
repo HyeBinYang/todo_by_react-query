@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import TodoItem from "../TodoItem";
 import useTodoListQuery from "../../utils/query/useTodoListQuery";
 import "./style.css";
@@ -16,6 +16,16 @@ const TodoList = () => {
     return todoList?.filter((todo) => todo.title.includes(context.keyword));
   }, [todoList, context.keyword]);
 
+  const popupModal = useCallback(() => {
+    const coupler = {
+      "": null,
+      edit: <TodoEditModal />,
+      add: <TodoAddModal />,
+    };
+
+    return coupler[context.modal];
+  }, [context.modal]);
+
   if (status === "loading") {
     return <Spinner />;
   }
@@ -27,8 +37,7 @@ const TodoList = () => {
   return (
     <>
       <ul className="todo__list">{searchedTodoList ? searchedTodoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>
-      {context.modal === "add" && <TodoAddModal />}
-      {context.editModal && <TodoEditModal />}
+      {popupModal()}
     </>
   );
 };
