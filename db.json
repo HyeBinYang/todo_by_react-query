@@ -12,12 +12,12 @@
     },
     {
       "title": "ㅈㄸ",
-      "done": false,
+      "done": true,
       "id": 15
     },
     {
       "title": "ㅎㄱㄷㅎㄷㅎㄷ",
-      "done": false,
+      "done": true,
       "id": 16
     },
     {
@@ -27,12 +27,12 @@
     },
     {
       "title": "ㄷㄱㅅㄱㄷㅅㄱㄷㅅ",
-      "done": false,
+      "done": true,
       "id": 18
     },
     {
       "title": "타입스크립트 스터디",
-      "done": false,
+      "done": true,
       "id": 19
     },
     {

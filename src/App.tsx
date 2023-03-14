@@ -1,21 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import "./App.css";
 import TodoLayout from "./components/TodoLayout";
-import TodoEditModal from "./components/TodoEditModal";
-import { TodoContext } from "./context/TodoContext";
+import TodoSearch from "./components/TodoSearch";
 
 const App = () => {
-  // const context = useContext(TodoContext);
-
   return (
     <main id="app">
       <TodoLayout>
         <TodoInput />
+        <TodoSearch />
         <TodoList />
       </TodoLayout>
-      {/* {context.editModal && <TodoEditModal />} */}
     </main>
   );
 };

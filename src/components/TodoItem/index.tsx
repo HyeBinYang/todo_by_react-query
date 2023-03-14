@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TodoActionsContext } from "../../context/TodoContext";
+import { TodoActionsContext, TodoContext } from "../../context/TodoContext";
 import { Todo } from "../../types/todo";
 import useDeleteTodoMutation from "../../utils/mutation/useDeleteTodoMutation";
 import useUpdateTodoMutation from "../../utils/mutation/useUpdateTodoMutation";
@@ -10,8 +10,6 @@ interface TodoItemProps extends Todo {}
 const TodoItem = (todo: TodoItemProps) => {
   const todoActionsContext = useContext(TodoActionsContext);
   const updateMutation = useUpdateTodoMutation();
-
-  console.log(todoActionsContext);
 
   const handleToggleCheckbox = () => {
     updateMutation.mutate({ ...todo, done: !todo.done });

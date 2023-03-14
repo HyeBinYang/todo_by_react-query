@@ -7,12 +7,15 @@ interface TodoContextProviderProps {
 
 interface TodoState {
   todo: Todo;
+  todoList: Todo[];
   editModal: boolean;
+  keyword: string;
 }
 
 interface TodoActions {
   getTodo(todo: Todo): void;
   toggleEditModal(active: boolean): void;
+  onChangeKeyword(value: string): void;
 }
 
 export const TodoContext = createContext<TodoState>({
@@ -20,27 +23,45 @@ export const TodoContext = createContext<TodoState>({
     title: "",
     done: false,
   },
+  todoList: [],
   editModal: false,
+  keyword: "",
 });
 
 export const TodoActionsContext = createContext<TodoActions>({
   getTodo: (todo: Todo) => {},
   toggleEditModal: (active: boolean) => {},
+  onChangeKeyword: (value: string) => {},
 });
 
 const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
+  const [keyword, setKeyword] = useState("");
+  const [todoList, setTodoList] = useState<Todo[]>([]);
   const [todo, setTodo] = useState<Todo>({
     title: "",
     done: false,
   });
   const [editModal, setEditModal] = useState(false);
+
+  const values = {
+    todo,
+    todoList,
+    editModal,
+    keyword,
+  };
   const actions = useMemo(
     () => ({
       getTodo(todo: Todo) {
         setTodo(todo);
       },
+      initTodoList(todoList: Todo[]) {
+        setTodoList(todoList);
+      },
       toggleEditModal(active: boolean) {
         setEditModal(active);
+      },
+      onChangeKeyword(value: string) {
+        setKeyword(value);
       },
     }),
     []
@@ -48,7 +69,7 @@ const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
 
   return (
     <TodoActionsContext.Provider value={actions}>
-      <TodoContext.Provider value={{ todo, editModal }}>{children}</TodoContext.Provider>
+      <TodoContext.Provider value={values}>{children}</TodoContext.Provider>
     </TodoActionsContext.Provider>
   );
 };

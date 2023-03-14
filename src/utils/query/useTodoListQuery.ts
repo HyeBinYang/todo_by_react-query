@@ -1,10 +1,10 @@
 import { AxiosError } from "axios";
-import { useQuery } from "react-query";
+import { useQuery, QueryFunctionContext } from "react-query";
 import { Todo } from "../../types/todo";
 import axiosInstance from "../axios";
 
 const getTodoList = async () => {
-  const response = await axiosInstance.get("todos");
+  const response = await axiosInstance.get(`todos`);
   return response.data;
 };
 

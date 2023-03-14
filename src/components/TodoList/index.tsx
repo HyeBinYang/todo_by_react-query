@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import TodoItem from "../TodoItem";
 import useTodoListQuery from "../../utils/query/useTodoListQuery";
 import "./style.css";
@@ -7,8 +7,13 @@ import { TodoContext } from "../../context/TodoContext";
 import TodoEditModal from "../TodoEditModal";
 
 const TodoList = () => {
-  const { data: todoList, status, error } = useTodoListQuery();
   const context = useContext(TodoContext);
+  const { data: todoList, status, error } = useTodoListQuery();
+
+  const searchedTodoList = useMemo(() => {
+    if (!context.keyword) return todoList;
+    return todoList?.filter((todo) => todo.title.includes(context.keyword));
+  }, [todoList, context.keyword]);
 
   if (status === "loading") {
     return <Spinner />;
@@ -20,7 +25,7 @@ const TodoList = () => {
 
   return (
     <>
-      <ul className="todo__list">{todoList ? todoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>
+      <ul className="todo__list">{searchedTodoList ? searchedTodoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>
       {context.editModal && <TodoEditModal />}
     </>
   );
