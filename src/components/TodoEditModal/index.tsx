@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { TodoActionsContext, TodoContext } from "../../context/TodoContext";
 import useUpdateTodoMutation from "../../utils/mutation/useUpdateTodoMutation";
+import Modal from "../common/Modal";
 import "./style.css";
 
 const TodoEditModal = () => {
@@ -34,20 +35,18 @@ const TodoEditModal = () => {
   }, []);
 
   return (
-    <div className="modal__container">
-      <div className="modal__content">
-        <h1 className="modal__title">Todo 수정하기</h1>
-        <input ref={inputEl} type="text" className="modal__input--text" placeholder="할 일" />
-        <div className="modal__buttons">
-          <button className="modal__button" onClick={handleClickCancel}>
-            취소
-          </button>
-          <button className="modal__button" onClick={handleClickUpdate}>
-            수정
-          </button>
-        </div>
+    <Modal>
+      <h1 className="modal__title">Todo 수정하기</h1>
+      <input ref={inputEl} type="text" className="modal__input--text" placeholder="할 일" />
+      <div className="modal__buttons">
+        <button className="modal__button" onClick={handleClickCancel}>
+          취소
+        </button>
+        <button className="modal__button" onClick={handleClickUpdate}>
+          수정
+        </button>
       </div>
-    </div>
+    </Modal>
   );
 };
 

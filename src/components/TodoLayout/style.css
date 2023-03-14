@@ -1,11 +1,11 @@
 .todo__container {
   width: 50%;
   max-width: 800px;
-  height: 80vh;
+  height: 77vh;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -58%);
   background-color: #fff;
   padding: 20px;
   border-radius: 16px;

@@ -1,18 +1,18 @@
 import React from "react";
-import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import "./App.css";
 import TodoLayout from "./components/TodoLayout";
 import TodoSearch from "./components/TodoSearch";
+import TodoAddButton from "./components/TodoAddButton";
 
 const App = () => {
   return (
     <main id="app">
       <TodoLayout>
-        <TodoInput />
         <TodoSearch />
         <TodoList />
       </TodoLayout>
+      <TodoAddButton />
     </main>
   );
 };

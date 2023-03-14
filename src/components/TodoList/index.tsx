@@ -5,6 +5,7 @@ import "./style.css";
 import Spinner from "../common/Spinner";
 import { TodoContext } from "../../context/TodoContext";
 import TodoEditModal from "../TodoEditModal";
+import TodoAddModal from "../TodoAddModal";
 
 const TodoList = () => {
   const context = useContext(TodoContext);
@@ -26,6 +27,7 @@ const TodoList = () => {
   return (
     <>
       <ul className="todo__list">{searchedTodoList ? searchedTodoList.map((todo) => <TodoItem key={todo.id} {...todo} />) : null}</ul>
+      {context.modal === "add" && <TodoAddModal />}
       {context.editModal && <TodoEditModal />}
     </>
   );

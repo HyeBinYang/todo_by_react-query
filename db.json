@@ -3,57 +3,12 @@
     {
       "title": "ertert",
       "done": false,
-      "id": 13
+      "id": 1
     },
     {
-      "title": "ㅈㄷㅈㄷ",
+      "title": "리엑트 공부",
       "done": false,
-      "id": 14
-    },
-    {
-      "title": "ㅈㄸ",
-      "done": true,
-      "id": 15
-    },
-    {
-      "title": "ㅎㄱㄷㅎㄷㅎㄷ",
-      "done": true,
-      "id": 16
-    },
-    {
-      "title": "ㄷㅅㄷㄱㅈ",
-      "done": false,
-      "id": 17
-    },
-    {
-      "title": "ㄷㄱㅅㄱㄷㅅㄱㄷㅅ",
-      "done": true,
-      "id": 18
-    },
-    {
-      "title": "타입스크립트 스터디",
-      "done": true,
-      "id": 19
-    },
-    {
-      "title": "ㅈㄷㅈㄷ",
-      "done": false,
-      "id": 20
-    },
-    {
-      "title": "egergreg",
-      "done": false,
-      "id": 21
-    },
-    {
-      "title": "wewe",
-      "done": false,
-      "id": 22
-    },
-    {
-      "title": "we",
-      "done": false,
-      "id": 23
+      "id": 2
     }
   ]
 }
