@@ -12,12 +12,14 @@ interface TodoState {
   todoList: Todo[];
   modal: Modal;
   keyword: string;
+  done: boolean | null;
 }
 
 interface TodoActions {
   getTodo(todo: Todo): void;
   toggleModal(modal: Modal): void;
   onChangeKeyword(value: string): void;
+  selectDone(done: boolean | null): void;
 }
 
 export const TodoContext = createContext<TodoState>({
@@ -28,15 +30,18 @@ export const TodoContext = createContext<TodoState>({
   todoList: [],
   modal: "",
   keyword: "",
+  done: null,
 });
 
 export const TodoActionsContext = createContext<TodoActions>({
   getTodo: (todo: Todo) => {},
   toggleModal: (modal: Modal) => {},
   onChangeKeyword: (value: string) => {},
+  selectDone: (done: boolean | null) => {},
 });
 
 const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
+  const [done, setDone] = useState<boolean | null>(null);
   const [keyword, setKeyword] = useState("");
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [todo, setTodo] = useState<Todo>({
@@ -46,6 +51,7 @@ const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
   const [modal, setModal] = useState<Modal>("");
 
   const values = {
+    done,
     todo,
     todoList,
     modal,
@@ -64,6 +70,9 @@ const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
       },
       onChangeKeyword(value: string) {
         setKeyword(value);
+      },
+      selectDone(done: boolean | null) {
+        setDone(done);
       },
     }),
     []

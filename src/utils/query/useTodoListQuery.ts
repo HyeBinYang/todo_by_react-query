@@ -8,8 +8,8 @@ const getTodoList = async () => {
   return response.data;
 };
 
-const useTodoListQuery = () => {
-  return useQuery<Todo[], AxiosError>(["todoList"], getTodoList);
+const useTodoListQuery = (a?: any) => {
+  return useQuery<Todo[], AxiosError>(["todoList", a], getTodoList);
 };
 
 export default useTodoListQuery;

@@ -1,8 +1,9 @@
 .todo__list {
   height: calc(100% - 70px);
   list-style: none;
-  margin-top: 30px;
+  margin-top: 10px;
   overflow-y: auto;
+  clear: both;
 }
 
 .todo__list > * {
