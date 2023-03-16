@@ -19,7 +19,7 @@ interface DropdownState {
 const DropdownContext = createContext<DropdownState | undefined>(undefined);
 
 const Dropdown = ({ children }: DropdownProps) => {
-  const [open, toggle] = useState(true);
+  const [open, toggle] = useState(false);
 
   return (
     <div className="dropdown__container">

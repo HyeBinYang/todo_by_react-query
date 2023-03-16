@@ -3,14 +3,14 @@ import { TodoActionsContext, TodoContext } from "../../context/TodoContext";
 import Input from "../common/Input";
 
 const TodoSearch = () => {
-  const todoContext = useContext(TodoContext);
+  const { keyword } = useContext(TodoContext);
   const todoActionsContext = useContext(TodoActionsContext);
 
   return (
     <Input
       type="text"
       placeholder="등록된 할 일 검색"
-      value={todoContext.keyword}
+      value={keyword}
       onChange={(e) => todoActionsContext.onChangeKeyword(e.target.value)}
     />
   );

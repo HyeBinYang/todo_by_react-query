@@ -2,12 +2,12 @@
   "todos": [
     {
       "title": "리엑트 공부 123",
-      "done": false,
+      "done": true,
       "id": 2
     },
     {
       "title": "typescript 복습",
-      "done": true,
+      "done": false,
       "id": 3
     }
   ]
