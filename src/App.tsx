@@ -1,18 +1,28 @@
-import React from "react";
-import TodoList from "./components/TodoList";
+import React, { lazy } from "react";
 import "./App.css";
-import TodoLayout from "./components/TodoLayout";
-import TodoSearch from "./components/TodoSearch";
-import TodoAddButton from "./components/TodoAddButton";
+
+const TodoLayout = lazy(() => import("./components/TodoLayout"));
+const TodoList = lazy(() => import("./components/TodoList"));
+const TodoSearch = lazy(() => import("./components/TodoSearch"));
+const TodoAddButton = lazy(() => import("./components/TodoAddButton"));
+const LoginForm = lazy(() => import("./components/LoginForm"));
 
 const App = () => {
+  const me = localStorage.getItem("todo-user");
+
   return (
     <main id="app">
-      <TodoLayout>
-        <TodoSearch />
-        <TodoList />
-      </TodoLayout>
-      <TodoAddButton />
+      {me ? (
+        <>
+          <TodoLayout>
+            <TodoSearch />
+            <TodoList />
+          </TodoLayout>
+          <TodoAddButton />
+        </>
+      ) : (
+        <LoginForm />
+      )}
     </main>
   );
 };
