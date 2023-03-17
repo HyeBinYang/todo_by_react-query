@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import TodoContextProvider from "./context/TodoContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
@@ -20,6 +21,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <TodoContextProvider>
+        <ReactQueryDevtools initialIsOpen />
         <App />
       </TodoContextProvider>
     </QueryClientProvider>

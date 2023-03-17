@@ -10,5 +10,18 @@
       "done": false,
       "id": 3
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "skdisk7368",
+      "password": "12341234"
+    }
+  ],
+  "session": [
+    {
+      "username": "skdisk7368",
+      "id": 1
+    }
   ]
 }

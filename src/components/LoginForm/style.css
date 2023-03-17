@@ -32,3 +32,7 @@
 .login-form__button:active {
   box-shadow: 0 4px 20px #0003;
 }
+
+.login-form__button:disabled {
+  opacity: 0.1;
+}
