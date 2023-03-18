@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import TodoContextProvider from "./context/TodoContext";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -22,7 +23,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <TodoContextProvider>
         <ReactQueryDevtools initialIsOpen />
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </TodoContextProvider>
     </QueryClientProvider>
   </React.StrictMode>

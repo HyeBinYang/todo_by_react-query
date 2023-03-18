@@ -4,7 +4,6 @@ import axiosInstance from "../axios";
 const getSessionUser = async ({ queryKey }: QueryFunctionContext<["getSession"]>) => {
   const username = localStorage.getItem("user");
 
-  console.log(username);
   if (!username) return;
 
   const res = await axiosInstance.get(`/session?username=${username}`);
@@ -13,6 +12,10 @@ const getSessionUser = async ({ queryKey }: QueryFunctionContext<["getSession"]>
 
 const useGetSessionQuery = () => {
   return useQuery(["getSession"], getSessionUser, {
+    onSuccess(user) {
+      if (user) {
+      }
+    },
     retry: 0,
   });
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import { useQueryClient } from "react-query";
 import useForm from "../../hook/useForm";
 import { LoginValues } from "../../types/auth";
 import axiosInstance from "../../utils/axios";
@@ -9,7 +8,6 @@ import Input from "../common/Input";
 import "./style.css";
 
 const LoginForm = () => {
-  const queryClient = useQueryClient();
   const loginMutation = useLoginMutation();
   const { values, errors, handleChange, handleSubmit, isSubmitting } = useForm<LoginValues, LoginValues>({
     initialValues: { username: "", password: "" },
@@ -18,15 +16,7 @@ const LoginForm = () => {
       const res = await axiosInstance.get(`/users?username=${username}&password=${password}`);
 
       if (res.data.length) {
-        loginMutation.mutate(
-          { username, id: res.data[0].id },
-          {
-            onSuccess() {
-              localStorage.setItem("user", username as string);
-              queryClient.invalidateQueries({ queryKey: ["getSession"] });
-            },
-          }
-        );
+        loginMutation.mutate({ username, id: res.data[0].id });
       } else {
         alert("아이디 또는 비밀번호가 틀렸습니다.");
       }

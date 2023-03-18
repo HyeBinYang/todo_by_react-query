@@ -1,31 +1,23 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Spinner from "./components/common/Spinner";
 import useGetSessionQuery from "./utils/query/useGetSessionQuery";
 
-const TodoLayout = lazy(() => import("./components/TodoLayout"));
-const TodoList = lazy(() => import("./components/TodoList"));
-const TodoSearch = lazy(() => import("./components/TodoSearch"));
-const TodoAddButton = lazy(() => import("./components/TodoAddButton"));
-const LoginForm = lazy(() => import("./components/LoginForm"));
+const Todo = lazy(() => import("./pages/Todo"));
+const Login = lazy(() => import("./pages/Login"));
 
 const App = () => {
-  const { data: me, isLoading } = useGetSessionQuery();
-
-  if (isLoading) return null;
+  const { data } = useGetSessionQuery();
 
   return (
     <main id="app">
-      {me ? (
-        <>
-          <TodoLayout>
-            <TodoSearch />
-            <TodoList />
-          </TodoLayout>
-          <TodoAddButton />
-        </>
-      ) : (
-        <LoginForm />
-      )}
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route path="todo" element={<Todo />} />
+          <Route path="login" element={<Login />} />
+        </Routes>
+      </Suspense>
     </main>
   );
 };
