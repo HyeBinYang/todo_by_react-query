@@ -1,14 +1,10 @@
 {
   "todos": [
     {
-      "title": "리엑트 공부 123",
-      "done": true,
-      "id": 2
-    },
-    {
-      "title": "typescript 복습",
+      "title": "hello123",
       "done": false,
-      "id": 3
+      "writer": "skdisk7368",
+      "id": 1
     }
   ],
   "users": [
@@ -21,6 +17,7 @@
   "session": [
     {
       "username": "skdisk7368",
+      "until": 1679149400675,
       "id": 1
     }
   ]

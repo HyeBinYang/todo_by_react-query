@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 
-const createSession = async ({ username, id }: any) => {
-  const res = await axiosInstance.put(`/session/${id}`, { username });
+const createSession = async ({ username }: any) => {
+  const res = await axiosInstance.post(`session`, { username, until: Date.now() });
   return res.data;
 };
 
@@ -13,7 +13,8 @@ const useLoginMutation = () => {
 
   return useMutation((user: any) => createSession(user), {
     onSuccess(user) {
-      localStorage.setItem("user", user.name as string);
+      const { id, username } = user;
+      localStorage.setItem("user", JSON.stringify({ id, username }));
       queryClient.invalidateQueries({ queryKey: ["getSession"] });
       navigate("/todo");
     },

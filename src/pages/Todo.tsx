@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LogoutButton from "../components/LogoutButton";
 import TodoAddButton from "../components/TodoAddButton";
 import TodoLayout from "../components/TodoLayout";
 import TodoList from "../components/TodoList";
@@ -18,6 +19,7 @@ const Todo = () => {
 
   return (
     <>
+      <LogoutButton />
       <TodoLayout>
         <TodoSearch />
         <TodoList />

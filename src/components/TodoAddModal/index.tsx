@@ -18,7 +18,7 @@ const TodoAddModal = () => {
     if (!todoInputEl.current) return;
 
     mutation.mutate(
-      { title: todoInputEl.current.value, done: false },
+      { title: todoInputEl.current.value, done: false, writer: localStorage.getItem("user") as string },
       {
         onSuccess() {
           todoActionsContext.toggleModal("");

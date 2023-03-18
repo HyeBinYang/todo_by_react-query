@@ -26,6 +26,7 @@ export const TodoContext = createContext<TodoState>({
   todo: {
     title: "",
     done: false,
+    writer: "",
   },
   todoList: [],
   modal: "",
@@ -47,6 +48,7 @@ const TodoContextProvider = ({ children }: TodoContextProviderProps) => {
   const [todo, setTodo] = useState<Todo>({
     title: "",
     done: false,
+    writer: "",
   });
   const [modal, setModal] = useState<Modal>("");
 
